@@ -9,6 +9,8 @@ import Testimonials from "@/components/Testimonials";
 
 import { motion } from "framer-motion";
 import { useBouncingElement } from "@/hooks/useBouncingElement";
+import CallToAction from "@/components/CTA";
+import Footer from "@/components/Footer";
 
 function MovingSun() {
   const { x, y } = useBouncingElement(256, 256, 0.7); // 256px = w-64/h-64
@@ -46,6 +48,8 @@ export default function Home() {
       <Benefits />
       <Testimonials />
       <HowItWorks />
+      <CallToAction />
+      <Footer />
     </main>
   );
 }
