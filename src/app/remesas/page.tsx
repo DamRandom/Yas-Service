@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import Footer from "../../components/Footer";
 import { useBouncingElement } from "@/hooks/useBouncingElement";
 
@@ -31,46 +32,21 @@ export default function RemesasPage() {
 
   return (
     <>
-      {/* Sección comercial */}
-      <section className="relative text-center py-20 px-6  overflow-hidden">
-        <div className="absolute inset-0">
-         
-        </div>
+      {/* Hero con imagen a ancho completo (sin distorsión) */}
+      <section className="relative w-screen flex flex-col items-center text-center overflow-hidden">
+  {/* Contenedor de la imagen que se adapta automáticamente */}
+  <div className="relative w-full">
+    <Image
+      src="/images/chica-remesas.png"
+      alt="Chica apuntando hacia abajo"
+      width={1920}
+      height={1080}
+      priority
+      className="w-full h-auto object-contain object-top"
+    />
+  </div>
+</section>
 
-        <div className="relative z-10 max-w-3xl mx-auto">
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bold text-[#e25e0b] drop-shadow-[0_0_20px_#e25e0b]"
-          >
-            Envía dinero a Cuba de forma rápida y segura
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="mt-6 text-gray-300 text-lg md:text-xl leading-relaxed"
-          >
-            Con nuestro servicio de remesas, tus familiares en Cuba reciben el dinero
-            sin complicaciones. Cotiza y envía en segundos, sin trámites ni esperas.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="mt-10"
-          >
-            <a
-              href="#formulario-remesas"
-              className="bg-[#e25e0b] text-white font-bold px-10 py-4 rounded-full shadow-lg hover:scale-105 hover:drop-shadow-[0_0_25px_#e25e0b] transition-transform duration-300"
-            >
-              Enviar ahora
-            </a>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Formulario */}
       <main
@@ -86,7 +62,7 @@ export default function RemesasPage() {
           <div className="absolute inset-0 backdrop-blur-[100px]" />
         </div>
 
-        <div className="relative container max-w-3xl mx-auto p-10 rounded-2xl shadow-lg border border-[#0E8C8C]/40 mt-20">
+        <div className="relative container max-w-3xl mx-auto p-10 rounded-2xl shadow-lg border border-[#0E8C8C]/40 mt-24">
           <motion.h2
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -97,7 +73,6 @@ export default function RemesasPage() {
           </motion.h2>
 
           <div className="grid gap-6">
-            {/* Remitente */}
             <div className="grid md:grid-cols-2 gap-4">
               <input
                 type="text"
@@ -111,7 +86,6 @@ export default function RemesasPage() {
               />
             </div>
 
-            {/* Destinatario */}
             <div className="grid md:grid-cols-2 gap-4">
               <input
                 type="text"
@@ -125,16 +99,13 @@ export default function RemesasPage() {
               />
             </div>
 
-            {/* Monto y moneda */}
             <div className="grid md:grid-cols-2 gap-4 items-center">
               <input
                 type="number"
                 placeholder="Monto a enviar"
                 value={amount}
                 onChange={(e) =>
-                  setAmount(
-                    e.target.value === "" ? "" : Number(e.target.value)
-                  )
+                  setAmount(e.target.value === "" ? "" : Number(e.target.value))
                 }
                 className="w-full p-3 rounded-md bg-transparent border border-gray-600 focus:border-[#e25e0b] outline-none transition"
               />
@@ -149,7 +120,6 @@ export default function RemesasPage() {
               </select>
             </div>
 
-            {/* Resultado */}
             {converted > 0 && (
               <div className="text-center text-lg font-semibold text-[#0E8C8C] mt-2">
                 El destinatario recibirá aproximadamente{" "}
@@ -160,7 +130,6 @@ export default function RemesasPage() {
             )}
           </div>
 
-          {/* Botón */}
           <div className="mt-8 flex justify-center">
             <motion.a
               href="https://wa.me/51987654321"
@@ -175,15 +144,14 @@ export default function RemesasPage() {
             </motion.a>
           </div>
 
-          {/* Nota */}
           <p className="mt-6 text-center text-sm text-gray-400">
             Al presionar{" "}
             <span className="text-[#e25e0b] font-semibold">Aceptar</span>, se
-            enviará un mensaje al WhatsApp de un encargado con tu solicitud.
-            Uno de nuestros agentes se pondrá en contacto contigo para confirmar la operación.
+            enviará un mensaje al WhatsApp de un encargado con tu solicitud. Uno
+            de nuestros agentes se pondrá en contacto contigo para confirmar la
+            operación.
           </p>
 
-          {/* Contacto alternativo */}
           <div className="mt-8 text-center text-gray-300">
             <p>¿Prefieres atención directa?</p>
             <Link
