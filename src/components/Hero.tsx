@@ -25,6 +25,7 @@ export default function Hero() {
               alt="Yas Service Logo"
               width={260}
               height={260}
+              style={{ height: 'auto' }}
               className="w-[180px] sm:w-[220px] lg:w-[260px] drop-shadow-[0_0_30px_rgba(255,165,0,0.5)] object-contain mx-auto lg:mx-0"
               priority
             />

@@ -18,6 +18,7 @@ export default function Footer() {
             alt="Yas Services Logo"
             width={140}
             height={140}
+            style={{ width: '140px', height: 'auto' }}
             className="mb-4"
           />
           <p className="text-sm text-gray-400">
