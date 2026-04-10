@@ -4,95 +4,105 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center text-[#0A0F12] overflow-hidden">
-      <div className="relative container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-6 md:px-16 z-10">
-        {/* Columna Izquierda - Logo + Info */}
-        <div className="flex flex-col justify-center space-y-8">
-          {/* Logo */}
+    <section className="relative w-full pt-28 pb-12 md:pt-40 md:pb-24 lg:min-h-screen flex items-center overflow-hidden text-white">
+      {/* Fondos y decoraciones - Se ajustan al tema oscuro */}
+      <div className="absolute top-[10%] left-[-10%] w-[300px] h-[300px] bg-[#0E8C8C]/20 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-[20%] right-[-10%] w-[400px] h-[400px] bg-[#e25e0b]/20 rounded-full blur-[120px] pointer-events-none"></div>
+
+      <div className="container relative z-10 mx-auto px-6 md:px-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+        
+        {/* Izquierda: Textos */}
+        <div className="w-full lg:w-[55%] flex flex-col items-center lg:items-start text-center lg:text-left">
+          
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mb-6"
+            className="mb-6 lg:mb-8"
           >
             <Image
               src="/logo.png"
               alt="Yas Service Logo"
-              width={220}
-              height={220}
-              className="object-contain drop-shadow-[0_0_30px_rgba(255,165,0,0.5)]"
+              width={260}
+              height={260}
+              className="w-[180px] sm:w-[220px] lg:w-[260px] drop-shadow-[0_0_30px_rgba(255,165,0,0.5)] object-contain mx-auto lg:mx-0"
               priority
             />
           </motion.div>
 
-          {/* Tagline principal resumido */}
-          <motion.h1
-            initial={{ opacity: 0, x: -50 }}
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-6xl font-extrabold leading-tight text-[#0E8C8C] drop-shadow-lg"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex flex-wrap justify-center lg:justify-start gap-2 mb-6"
           >
-            Conexión Global
-          </motion.h1>
+            <span className="bg-[#e25e0b]/10 text-[#e25e0b] px-4 py-1.5 text-xs sm:text-sm font-bold uppercase tracking-wider rounded-full shadow-sm border border-[#e25e0b]/30 backdrop-blur-md">Remesas</span>
+            <span className="bg-[#0E8C8C]/10 text-[#0E8C8C] px-4 py-1.5 text-xs sm:text-sm font-bold uppercase tracking-wider rounded-full shadow-sm border border-[#0E8C8C]/30 backdrop-blur-md">Envíos</span>
+            <span className="bg-[#FFD93D]/10 text-[#FFD93D] px-4 py-1.5 text-xs sm:text-sm font-bold uppercase tracking-wider rounded-full shadow-sm border border-[#FFD93D]/30 backdrop-blur-md">Vacaciones</span>
+          </motion.div>
 
-          {/* Subtítulo comercial */}
-          <motion.p
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="flex gap-4 flex-wrap text-lg md:text-xl max-w-md justify-center"
-          >
-            <span className="text-[#e25e0b] drop-shadow-[0_0_8px_#e25e0b]">
-              #Remesas
-            </span>
-            <span className="text-[#e25e0b] drop-shadow-[0_0_8px_#e25e0b]">
-              #Envíos
-            </span>
-            <span className="text-[#e25e0b] drop-shadow-[0_0_8px_#e25e0b]">
-              #Vacaciones
-            </span>
-
-            <span className="w-full text-gray-200 font-semibold mt-3 text-center">
-              Todo en un lugar, rápido y confiable siempre.
-            </span>
-          </motion.p>
-
-          {/* CTA */}
-          <motion.div
+          <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-black leading-[1.05] tracking-tight mb-6 drop-shadow-lg"
           >
-            <button className="px-8 py-4 bg-[#0E8C8C] text-lg rounded-full font-semibold shadow-xl hover:bg-[#086b6b] hover:text-[#b6eeee] transition relative group overflow-hidden">
-              <span className="relative z-10">Empieza ahora</span>
-              {/* Glow animado */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0E8C8C] to-[#086b6b] opacity-0 group-hover:opacity-100 blur-xl transition"></div>
+            Conexión <br/> 
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0E8C8C] to-[#086b6b]">Global</span>
+          </motion.h1>
+
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-lg mb-8 lg:mb-10 font-medium leading-relaxed drop-shadow-md"
+          >
+            Todo lo que necesitas en un solo lugar. <span className="font-bold text-white">Rápido, seguro y confiable siempre.</span>
+          </motion.p>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+          >
+            <button className="w-full sm:w-auto px-8 py-4 bg-[#0E8C8C] text-white text-base lg:text-lg rounded-full font-bold shadow-[0_0_20px_rgba(14,140,140,0.4)] hover:bg-[#086b6b] hover:shadow-[0_0_30px_rgba(14,140,140,0.6)] hover:-translate-y-1 transition-all duration-300">
+              Empieza ahora
+            </button>
+            <button className="w-full sm:w-auto px-8 py-4 bg-[#0A0F12]/50 backdrop-blur-md border border-white/20 text-white text-base lg:text-lg rounded-full font-bold hover:bg-white/10 hover:border-white/40 transition-all duration-300 shadow-sm flex items-center justify-center gap-2">
+              Ver servicios
             </button>
           </motion.div>
         </div>
 
-        {/* Columna Derecha - Imagen circular con borde naranja atardecer */}
-        {/* Columna Derecha - Imagen circular con borde tipo sol atardecer */}
-        {/* Columna Derecha - Imagen circular con borde tipo sol atardecer */}
-        <div className="flex justify-center md:justify-end items-center">
+        {/* Derecha: Imagen responsiva horizontal en móvil */}
+        <div className="w-full lg:w-[45%]">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="relative w-[340px] h-[340px] md:w-[460px] md:h-[460px] 
-               rounded-full overflow-hidden 
-               shadow-[0_0_60px_rgba(226,94,11,0.6)] 
-               border-4 border-transparent 
-               bg-[radial-gradient(circle_at_center,_#FFD93D,_#FFB347,_#E25E0B)] 
-               p-1"
+            transition={{ duration: 1, delay: 0.4 }}
+            className="relative w-full aspect-video lg:aspect-[4/5] xl:aspect-[3/4] rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/10"
           >
             <Image
               src="/hero-image.jpg"
-              alt="Imagen Principal"
-              width={460}
-              height={460}
-              className="object-cover w-full h-full rounded-full"
+              alt="Yas Service"
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
+            {/* Elemento de seguridad/badge encima de la imagen ajustado a modo oscuro */}
+            <div className="absolute bottom-4 left-4 lg:bottom-8 lg:left-8 bg-[#0A0F12]/80 backdrop-blur-md p-3 lg:p-4 rounded-2xl shadow-[0_0_20px_rgba(0,0,0,0.5)] border border-white/10 flex items-center gap-3">
+               <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-[#e25e0b] to-[#c95106] flex items-center justify-center shrink-0">
+                 <svg className="w-5 h-5 lg:w-6 lg:h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                 </svg>
+               </div>
+               <div>
+                  <p className="text-white text-sm lg:text-base font-bold whitespace-nowrap">Confiabilidad 100%</p>
+                  <p className="text-gray-300 text-xs lg:text-sm">Trámites Seguros</p>
+               </div>
+            </div>
           </motion.div>
         </div>
       </div>

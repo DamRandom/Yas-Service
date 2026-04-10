@@ -4,12 +4,11 @@ import Link from "next/link";
 
 export default function CallToAction() {
   return (
-    <section className="relative flex flex-col items-center justify-center text-center py-32 px-6 md:px-12 overflow-hidden">
-      {/* Fondo dinámico */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0" />
+    <section className="relative flex flex-col items-center justify-center text-center py-24 md:py-32 px-6 md:px-12">
+      {/* Fondo dinámico sutil y sin cortes */}
+      <div className="absolute inset-0 -z-10 flex items-center justify-center">
         <motion.div
-          className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-[#e25e0b]/40 rounded-full blur-3xl"
+          className="w-[120vw] max-w-[800px] h-[250px] md:h-[400px] bg-[#e25e0b]/30 rounded-[100%] blur-3xl md:blur-[100px]"
           initial={{ scale: 0.6, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
@@ -18,7 +17,7 @@ export default function CallToAction() {
 
       {/* Texto principal */}
       <motion.h2
-        className="text-4xl md:text-6xl font-extrabold text-[#e25e0b] drop-shadow-[0_0_25px_#e25e0b] mb-12 tracking-wide"
+        className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-[#e25e0b] drop-shadow-[0_0_25px_#e25e0b] mb-8 md:mb-12 tracking-wide"
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
