@@ -1,73 +1,140 @@
 "use client";
+
 import { motion } from "framer-motion";
-import { FaPlane, FaMoneyBillWave, FaBox } from "react-icons/fa";
+import { FaPassport, FaPlane, FaIdCard, FaCheck, FaFileContract, FaArrowRight } from "react-icons/fa";
 
-export default function Services() {
-  const PHONE_NUMBER = "51986763560"; 
+interface ServicesProps {
+  onOpenModal: () => void;
+}
 
-  const services = [
+export default function Services({ onOpenModal }: ServicesProps) {
+  const serviceCategories = [
     {
-      icon: <FaMoneyBillWave size={40} />,
-      title: "Remesas",
-      desc: "Envío de dinero seguro y rápido a cualquier destino.",
-      message: "Hola, buenas, me interesa una remesa.",
+      icon: <FaPassport className="text-2xl text-[#C5A059]" />,
+      badge: "Especialidad Migratoria",
+      title: "Servicios Migratorios en Perú",
+      subtitle:
+        "Orientación y acompañamiento completo para obtener tu residencia legal en Perú.",
+      details: [
+        "Orientación personalizada sobre procesos de residencia legal.",
+        "Apoyo integral en preparación y revisión documental.",
+        "Acompañamiento en modalidades de Formación/Estudios y Reunificación Familiar.",
+        "Gestión de antecedentes penales, actas de nacimiento y matrimonio ante el MINJUS Cuba (15–20 días hábiles).",
+      ],
+      note: "No gestionamos visas de turismo. Enfocados en procesos de residencia definitiva.",
     },
     {
-      icon: <FaBox size={40} />,
-      title: "Envíos",
-      desc: "Transporte confiable de paquetes y documentos.",
-      message: "Hola, buenas, me interesa un envío.",
+      icon: <FaPlane className="text-2xl text-[#C5A059]" />,
+      badge: "Logística Integral",
+      title: "Pasajes y Servicios de Viaje",
+      subtitle:
+        "Soluciones completas para coordinar tu desplazamiento internacional sin contratiempos.",
+      details: [
+        "Búsqueda, reserva y emisión de pasajes aéreos optimizados.",
+        "Reserva de hospedaje verificado para una llegada segura.",
+        "Coordinación de movilidad y transporte interno en destino.",
+        "Organización de itinerarios adaptados a tu plan migratorio.",
+      ],
+      note: "Coordinación desde Cuba, Rusia, Guyana, Surinam u otro punto geográfico.",
     },
     {
-      icon: <FaPlane size={40} />,
-      title: "Vacaciones",
-      desc: "Planes de viaje diseñados para tu comodidad.",
-      message: "Hola, buenas, me interesa un viaje.",
+      icon: <FaIdCard className="text-2xl text-[#C5A059]" />,
+      badge: "Recepción en Destino",
+      title: "Acompañamiento al Llegar a Perú",
+      subtitle:
+        "Asistencia directa para una inserción rápida, ordenada y legal en el país.",
+      details: [
+        "Orientación paso a paso para la gestión del Carné de Extranjería.",
+        "Programación y acompañamiento para la cita de INTERPOL.",
+        "Asesoría para la apertura de cuenta bancaria en soles o USD.",
+        "Guía para los primeros trámites de inserción civil.",
+      ],
+      note: "Atención presencial y guiada para mayor tranquilidad durante tu llegada.",
     },
   ];
 
-  const createWhatsAppLink = (message: string) => {
-    return `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
-  };
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center text-white overflow-hidden py-24 md:py-0">
-      <div className="relative container mx-auto px-6 md:px-16 z-10 w-full">
-        {/* Título */}
-        <motion.h2
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-3xl md:text-5xl font-bold text-center text-[#0E8C8C] mb-10 md:mb-16 drop-shadow-lg"
-        >
-          Nuestros Servicios
-        </motion.h2>
+    <section id="servicios" className="py-24 bg-[#0A192F] relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Grid de servicios */}
-        <div className="grid gap-6 md:gap-8 md:grid-cols-3">
-          {services.map((service, index) => (
-            <motion.a
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#050B14] border border-[#C5A059]/30 text-[#C5A059] text-xs font-semibold uppercase tracking-wider mb-4">
+            <FaFileContract className="shrink-0" /> Portafolio Especializado
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
+            Nuestros <span className="gold-gradient-text">Servicios Integrales</span>
+          </h2>
+          <p className="text-gray-300 mt-5 text-base leading-relaxed">
+            Cobertura estructurada desde la evaluación inicial y legalización documental en origen
+            hasta la organización del viaje e integración en destino.
+          </p>
+        </motion.div>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-7">
+          {serviceCategories.map((service, index) => (
+            <motion.div
               key={index}
-              href={createWhatsAppLink(service.message)}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="relative p-6 md:p-8 bg-[#0A0F12]/70 border border-transparent flex flex-col justify-between cursor-pointer transition-transform duration-300 hover:scale-105 hover:shadow-lg group"
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, delay: index * 0.12 }}
+              whileHover={{ y: -6 }}
+              className="card-corporate rounded-2xl p-7 flex flex-col justify-between group"
             >
               <div>
-                <div className="text-[#dad6d4] mb-4 flex justify-center">
-                  {service.icon}
+                {/* Icon & Badge */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-start justify-between mb-6 gap-4 sm:gap-3">
+                  <div className="w-13 h-13 rounded-2xl bg-[#050B14] border border-[#C5A059]/35 flex items-center justify-center p-3.5 shadow-inner shrink-0">
+                    {service.icon}
+                  </div>
+                  <span className="text-[10px] font-bold text-[#C5A059] uppercase tracking-wider px-2.5 py-1 bg-[#050B14]/80 rounded-full border border-[#C5A059]/25 text-left sm:text-right leading-tight self-start sm:mt-1">
+                    {service.badge}
+                  </span>
                 </div>
-                <h3 className="text-xl md:text-2xl font-semibold text-center text-[#0E8C8C] mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-center text-gray-300 text-sm md:text-base">{service.desc}</p>
+
+                <h3 className="text-lg font-bold text-white mb-2 leading-snug">{service.title}</h3>
+                <p className="text-sm text-gray-300 mb-6 leading-relaxed">{service.subtitle}</p>
+
+                {/* Details */}
+                <ul className="space-y-2.5 mb-6">
+                  {service.details.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5 text-sm text-gray-300">
+                      <FaCheck className="text-[#C5A059] text-xs shrink-0 mt-1" />
+                      <span className="leading-snug">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </motion.a>
+
+              <div>
+                {/* Note */}
+                <div className="p-3.5 rounded-xl bg-[#050B14]/60 border border-[#1A2942]/80 mb-5 text-xs text-gray-400 italic leading-relaxed">
+                  * {service.note}
+                </div>
+
+                {/* Button */}
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={onOpenModal}
+                  className="w-full flex items-center justify-center gap-2 bg-transparent hover:bg-[#C5A059]/90 text-[#C5A059] hover:text-[#050B14] font-semibold text-sm py-3 px-4 rounded-xl border border-[#C5A059]/40 hover:border-[#C5A059] transition-all duration-300 cursor-pointer group"
+                >
+                  Consultar este servicio
+                  <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform duration-300" />
+                </motion.button>
+              </div>
+            </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );

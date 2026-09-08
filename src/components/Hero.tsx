@@ -1,111 +1,177 @@
 "use client";
-import Image from "next/image";
-import { motion } from "framer-motion";
 
-export default function Hero() {
+import { motion, Variants } from "framer-motion";
+import { FaWhatsapp, FaShieldAlt, FaCheckCircle, FaGlobe } from "react-icons/fa";
+
+interface HeroProps {
+  onOpenModal: () => void;
+}
+
+export default function Hero({ onOpenModal }: HeroProps) {
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 28 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+    },
+  };
+
+  const stats = [
+    { title: "+3 Años", desc: "de trayectoria" },
+    { title: "Transparente", desc: "en honorarios" },
+    { title: "Caso a caso", desc: "atención única" },
+    { title: "Internacional", desc: "alcance global" },
+  ];
+
   return (
-    <section className="relative w-full pt-28 pb-12 md:pt-40 md:pb-24 lg:min-h-screen flex items-center overflow-hidden text-white">
-      {/* Fondos y decoraciones - Se ajustan al tema oscuro */}
-      <div className="absolute top-[10%] left-[-10%] w-[300px] h-[300px] bg-[#0E8C8C]/20 rounded-full blur-[100px] pointer-events-none"></div>
-      <div className="absolute bottom-[20%] right-[-10%] w-[400px] h-[400px] bg-[#e25e0b]/20 rounded-full blur-[120px] pointer-events-none"></div>
+    <section id="inicio" className="relative pt-32 pb-24 md:pt-44 md:pb-32 overflow-hidden bg-corporate-pattern">
 
-      <div className="container relative z-10 mx-auto px-6 md:px-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
-        
-        {/* Izquierda: Textos */}
-        <div className="w-full lg:w-[55%] flex flex-col items-center lg:items-start text-center lg:text-left">
-          
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-6 lg:mb-8"
-          >
-            <Image
-              src="/logo.png"
-              alt="Yas Service Logo"
-              width={260}
-              height={260}
-              style={{ height: 'auto' }}
-              className="w-[180px] sm:w-[220px] lg:w-[260px] drop-shadow-[0_0_30px_rgba(255,165,0,0.5)] object-contain mx-auto lg:mx-0"
-              priority
-            />
-          </motion.div>
+      {/* Ambient orb — slow drift */}
+      <motion.div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(197, 160, 89, 0.12) 0%, rgba(11, 33, 63, 0.4) 40%, transparent 80%)",
+        }}
+        animate={{
+          scale: [1, 1.12, 1],
+          opacity: [0.6, 0.85, 0.6],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
 
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-wrap justify-center lg:justify-start gap-2 mb-6"
-          >
-            <span className="bg-[#e25e0b]/10 text-[#e25e0b] px-4 py-1.5 text-xs sm:text-sm font-bold uppercase tracking-wider rounded-full shadow-sm border border-[#e25e0b]/30 backdrop-blur-md">Remesas</span>
-            <span className="bg-[#0E8C8C]/10 text-[#0E8C8C] px-4 py-1.5 text-xs sm:text-sm font-bold uppercase tracking-wider rounded-full shadow-sm border border-[#0E8C8C]/30 backdrop-blur-md">Envíos</span>
-            <span className="bg-[#FFD93D]/10 text-[#FFD93D] px-4 py-1.5 text-xs sm:text-sm font-bold uppercase tracking-wider rounded-full shadow-sm border border-[#FFD93D]/30 backdrop-blur-md">Vacaciones</span>
-          </motion.div>
+      {/* Secondary small gold orb */}
+      <motion.div
+        className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(circle, rgba(197, 160, 89, 0.06) 0%, transparent 70%)",
+        }}
+        animate={{
+          x: [0, 30, -15, 0],
+          y: [0, -20, 10, 0],
+          scale: [1, 1.1, 0.95, 1],
+        }}
+        transition={{
+          duration: 18,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
 
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-black leading-[1.05] tracking-tight mb-6 drop-shadow-lg"
-          >
-            Conexión <br/> 
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0E8C8C] to-[#086b6b]">Global</span>
-          </motion.h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          className="max-w-3xl mx-auto text-center space-y-7"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
 
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-base sm:text-lg lg:text-xl text-gray-300 max-w-lg mb-8 lg:mb-10 font-medium leading-relaxed drop-shadow-md"
-          >
-            Todo lo que necesitas en un solo lugar. <span className="font-bold text-white">Rápido, seguro y confiable siempre.</span>
-          </motion.p>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
-          >
-            <button className="w-full sm:w-auto px-8 py-4 bg-[#0E8C8C] text-white text-base lg:text-lg rounded-full font-bold shadow-[0_0_20px_rgba(14,140,140,0.4)] hover:bg-[#086b6b] hover:shadow-[0_0_30px_rgba(14,140,140,0.6)] hover:-translate-y-1 transition-all duration-300">
-              Empieza ahora
-            </button>
-            <button className="w-full sm:w-auto px-8 py-4 bg-[#0A0F12]/50 backdrop-blur-md border border-white/20 text-white text-base lg:text-lg rounded-full font-bold hover:bg-white/10 hover:border-white/40 transition-all duration-300 shadow-sm flex items-center justify-center gap-2">
-              Ver servicios
-            </button>
-          </motion.div>
-        </div>
-
-        {/* Derecha: Imagen responsiva horizontal en móvil */}
-        <div className="w-full lg:w-[45%]">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="relative w-full aspect-video lg:aspect-[4/5] xl:aspect-[3/4] rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/10"
-          >
-            <Image
-              src="/hero-image.jpg"
-              alt="Yas Service"
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            {/* Elemento de seguridad/badge encima de la imagen ajustado a modo oscuro */}
-            <div className="absolute bottom-4 left-4 lg:bottom-8 lg:left-8 bg-[#0A0F12]/80 backdrop-blur-md p-3 lg:p-4 rounded-2xl shadow-[0_0_20px_rgba(0,0,0,0.5)] border border-white/10 flex items-center gap-3">
-               <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-[#e25e0b] to-[#c95106] flex items-center justify-center shrink-0">
-                 <svg className="w-5 h-5 lg:w-6 lg:h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                 </svg>
-               </div>
-               <div>
-                  <p className="text-white text-sm lg:text-base font-bold whitespace-nowrap">Confiabilidad 100%</p>
-                  <p className="text-gray-300 text-xs lg:text-sm">Trámites Seguros</p>
-               </div>
+          {/* Institutional Badge — sin animate-ping */}
+          <motion.div variants={itemVariants} className="inline-block">
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#0B213F]/90 border border-[#C5A059]/35 shadow-lg shadow-black/20 backdrop-blur-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]" />
+              <span className="text-[11px] font-semibold text-[#C5A059] uppercase tracking-[0.18em]">
+                Tu trámite es nuestra prioridad
+              </span>
             </div>
           </motion.div>
-        </div>
+
+          {/* Main Headline */}
+          <motion.h1
+            variants={itemVariants}
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] lg:leading-[1.1]"
+          >
+            Acompañamiento Migratorio
+            <br />
+            <span className="gold-gradient-text">& Gestión de Viajes</span>
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            variants={itemVariants}
+            className="text-base sm:text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto"
+          >
+            Orientación personalizada para ciudadanos cubanos en sus procesos migratorios
+            y en la organización de su viaje hacia nuevos destinos.
+          </motion.p>
+
+          {/* Coverage */}
+          <motion.div
+            variants={itemVariants}
+            className="inline-flex items-center gap-2 text-sm text-gray-400 bg-[#0A192F]/60 border border-[#1A2942] px-4 py-2 rounded-full backdrop-blur-sm"
+          >
+            <FaGlobe className="text-[#C5A059] shrink-0" />
+            <span>
+              Cuba · Rusia · Guyana · Surinam · Perú · <strong className="text-gray-300">y más</strong>
+            </span>
+          </motion.div>
+
+          {/* CTAs */}
+          <motion.div
+            variants={itemVariants}
+            className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <motion.button
+              whileHover={{ scale: 1.04, boxShadow: "0 14px 32px -10px rgba(197,160,89,0.45)" }}
+              whileTap={{ scale: 0.96 }}
+              onClick={onOpenModal}
+              className="w-full sm:w-auto gold-gradient-bg text-[#050B14] font-bold text-base px-8 py-4 rounded-xl shadow-lg cursor-pointer flex items-center justify-center gap-2 animate-shine"
+            >
+              <FaShieldAlt className="text-lg shrink-0" />
+              Solicitar Asesoría Gratuita
+            </motion.button>
+
+            <motion.a
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              href="https://wa.me/51963807151?text=Hola%20Yas%20Service%2C%20deseo%20solicitar%20asesor%C3%ADa%20personalizada%20sobre%20mi%20proceso."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto flex items-center justify-center gap-2.5 bg-[#0B213F]/90 hover:bg-[#0A192F] text-white font-semibold text-base px-7 py-4 rounded-xl border border-[#C5A059]/30 hover:border-[#C5A059]/70 transition-all backdrop-blur-sm"
+            >
+              <FaWhatsapp className="text-green-500 text-xl shrink-0" />
+              Contactar por WhatsApp
+            </motion.a>
+          </motion.div>
+
+          {/* Stats Strip */}
+          <motion.div
+            variants={itemVariants}
+            className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 border-t border-[#1A2942]/50"
+          >
+            {stats.map((stat, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -4, borderColor: "rgba(197,160,89,0.45)" }}
+                className="flex flex-col items-start gap-0.5 p-4 rounded-xl bg-[#0A192F]/50 border border-[#1A2942]/80 transition-all cursor-default backdrop-blur-sm"
+              >
+                <div className="flex items-center gap-1.5">
+                  <FaCheckCircle className="text-[#C5A059] text-xs shrink-0" />
+                  <p className="text-sm font-bold text-white">{stat.title}</p>
+                </div>
+                <p className="text-[11px] text-gray-400 pl-4">{stat.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+        </motion.div>
       </div>
     </section>
   );

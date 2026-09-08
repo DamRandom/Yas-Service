@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { FileText, Send, Package } from "lucide-react";
+import { FaFileAlt, FaPaperPlane, FaBox } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 interface ServiceCardProps {
@@ -66,21 +66,21 @@ export default function Home() {
     {
       title: "Trámites de Residencia",
       description: "Gestiona y realiza seguimiento de todos tus trámites de residencia y documentación.",
-      icon: <FileText size={40} />,
+      icon: <FaFileAlt className="text-[40px]" />,
       href: "/residencia",
       comingSoon: false,
     },
     {
       title: "Remesas",
       description: "Envía y recibe dinero de forma segura y rápida. Gestiona tus tarjetas y transacciones.",
-      icon: <Send size={40} />,
+      icon: <FaPaperPlane className="text-[40px]" />,
       href: "/remesas",
       comingSoon: false,
     },
     {
       title: "Envíos",
       description: "Rastrea y gestiona todos tus envíos y paquetes desde un solo lugar.",
-      icon: <Package size={40} />,
+      icon: <FaBox className="text-[40px]" />,
       href: "/envios",
       comingSoon: true,
     },
